@@ -3,7 +3,7 @@
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![lifecycle](https://img.shields.io/badge/version-2026-red.svg)]()
 
-This lab introduces 
+This lab introduces sentiment analysis of text data using dictionary-based methods, covering tidy text processing, the VADER sentiment lexicon, and evaluation of classification performance.
 
 
 ## Meta-Information
