@@ -19,7 +19,9 @@ By the end of this tutorial you will be able to:
 5.  Classify the sentiment of a text as positive, negative or neutral.
 6.  Evaluate the performance of a sentiment classification using confusion matrices and accuracy metrics.
 7.  Discuss whether a pre-existing sentiment lexicon should be used in a particular application.
-8.  Discuss the managerial relevance of your findings from text analysis. \## Instructions to Students
+8.  Discuss the managerial relevance of your findings from text analysis. 
+
+## Instructions to Students
 
 These tutorials are **not graded**, but we encourage you to invest time and effort into working through them from start to finish.
 Add your solutions to the `lab_answer.Rmd` file as you work through the exercises so that you have a record of the work you have done.
@@ -285,7 +287,7 @@ As discussed above, our weapon of choice for sentiment analysis will be the VADE
 VADER doesn't want the data in a 'tidy' format because it uses the punctuation, capitalization and emojis when it evaluates the sentiment in a text.
 Let's get started using VADER.
 
-4.  To classify multiple review's sentiment in one go, the `vader` package has a function called `vader_df()`. The starter code below shows you how to use the function - you pass across the column of the dataset that has the text you want to analyse row by row. Adapt the code to run on the `hotel_sentiment` data set.
+3.  To classify multiple review's sentiment in one go, the `vader` package has a function called `vader_df()`. The starter code below shows you how to use the function - you pass across the column of the dataset that has the text you want to analyse row by row. Adapt the code to run on the `hotel_sentiment` data set.
 
 ```{r, eval=FALSE}
 # VADER is pretty nice in that we shouldn't need to clean it
@@ -311,7 +313,7 @@ vader_sent2 <-
   vader_sent %>%
   # we need a row number to merge it back into 
   # our original data
-  rowid_to_column("id") %>%
+  rowid_to_column("ID") %>%
   # remove any errors
   filter(word_scores != 'ERROR') %>%
   # classify as positive or negative
@@ -321,11 +323,11 @@ vader_sent2 <-
         # TRUE ~ SOMETHING
         TRUE ~ "positive"
         )
-    ) %>% 
-  select(id, vader_class)
+    ) %>%
+  select(ID, vader_class)
 ```
 
-5.  Merge the sentiment classifications from VADER back into the `hotel_sentiment` data. Use the following code to get started:
+4.  Merge the sentiment classifications from VADER back into the `hotel_sentiment` data. Use the following code to get started:
 
 ```{r}
 # Write your answer here
@@ -334,7 +336,7 @@ vader_sent2 <-
 The hotel data already had a sentiment measure in it, `polarity`.
 Let's compare the VADER sentiment classification to this measure to see how well it performed.
 
-6.  We will measure VADER's performance using a confusion matrix and assessing model accuracy. Think of the `polarity` column as the true classification to compare predictions to.
+5.  We will measure VADER's performance using a confusion matrix and assessing model accuracy. Think of the `polarity` column as the true classification to compare predictions to.
 
 ```{=html}
 <!-- -->
@@ -351,7 +353,7 @@ Let's compare the VADER sentiment classification to this measure to see how well
 
 **Write your written answer here**
 
-7.  The authors of the VADER lexicon advocate for using three classes for prediction - positive, negative and **neutral**. Their suggestion is to classify text into these three classes as follows:
+6.  The authors of the VADER lexicon advocate for using three classes for prediction - positive, negative and **neutral**. Their suggestion is to classify text into these three classes as follows:
 
 -   Positive Tweet: $compound \in (0.05, 1]$
 -   Neutral Tweet: $compound \in [{-0.05}, 0.05]$
@@ -364,14 +366,14 @@ Update the provided code above to implement this three class classification.
 # Write your answer here
 ```
 
-8.  Plot the frequency of each class from (7) as a bar chart. Does the plot suggest that adding a neutral class provides an improvement in this example?
+7.  Plot the frequency of each class from (6) as a bar chart. Does the plot suggest that adding a neutral class provides an improvement in this example?
 
 ```{r}
 # Write your answer here
 ```
 
-9.  Based on the performance we see here, would you recommend using VADER to classify hotel reviews as positive or negative if you were a marketing analyst for a hotel chain? Why or why not? If not, what might you do instead?
+8.  Based on the performance we see here, would you recommend using VADER to classify hotel reviews as positive or negative if you were a marketing analyst for a hotel chain? Why or why not? If not, what might you do instead?
 
 **Write your answer here**
 
-10. (Optional) The reading for this week, Text Mining with R, uses different sentiment lexicons to classify texts. Try one or more of these out on this text, and evaluate their performance. Can you find a lexicon that does better than VADER?
+9.  (Optional) The reading for this week, Text Mining with R, uses different sentiment lexicons to classify texts. Try one or more of these out on this text, and evaluate their performance. Can you find a lexicon that does better than VADER?
